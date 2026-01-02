@@ -1,0 +1,13 @@
+.menu{
+  border:4px solid orange;
+}
+.precount{
+  border:1px solid blue ;
+}
+.customcount{
+  border:1px solid red;
+}
+.breathcounter{
+  border:1px solid green;
+  height: 100px;
+}
