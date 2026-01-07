@@ -4,18 +4,20 @@ import "./App.css";
 function App() {
   const [presetCount, setPresetCount] = useState("");
   const [customInput, setCustomInput] = useState("");
+  const isPresetActive = true; //for time mode selection 
   return (
     <>
     <div className="menu">
       <div className="precount">
-        <h3> use one of the preset counts </h3>
+        <h3> Use one of the preset counts </h3>
         <select
           onChange={(e) => {
             setPresetCount(e.target.value);
             console.log(e.target.value);
+            isPresetActive = true;
           }}
         >
-          <option value="0">choose a preset count </option>
+          <option value="0">Choose a preset count </option>
           <option value="5">5 breaths </option>
           <option value="10">10 breaths</option>
           <option value="15">15 breaths</option>
@@ -26,7 +28,7 @@ function App() {
       </div>
 
       <div className="customcount">
-        <h3>or set your own preference </h3>
+        <h3>Or set your own preference </h3>
         <input
           type="number"
           min="1"
@@ -34,11 +36,22 @@ function App() {
           onChange={(e) => {
             setCustomInput(e.target.value);
             console.log(e.target.value);
+            isPresetActive = false;
           }}
         ></input>
       </div>
 </div>
+
+
       <div className="breathcounter">
+        
+        <div countdisplay>
+          <h1> {isPresetActive? presetCount:customInput }</h1>
+          <button>Start</button>
+          <button>Pause</button>
+          <button>Reset</button>
+
+          </div>
 
       </div>
     </>
