@@ -4,7 +4,9 @@ import "./App.css";
 function App() {
   const [presetCount, setPresetCount] = useState("");
   const [customInput, setCustomInput] = useState("");
-  const isPresetActive = true; //for time mode selection 
+  const [isPresetActive, setIsPresetActive] = useState(true); //for time mode selection 
+
+
   return (
     <>
     <div className="menu">
@@ -14,7 +16,8 @@ function App() {
           onChange={(e) => {
             setPresetCount(e.target.value);
             console.log(e.target.value);
-            isPresetActive = true;
+            setIsPresetActive(true);
+
           }}
         >
           <option value="0">Choose a preset count </option>
@@ -36,7 +39,7 @@ function App() {
           onChange={(e) => {
             setCustomInput(e.target.value);
             console.log(e.target.value);
-            isPresetActive = false;
+            setIsPresetActive(false);
           }}
         ></input>
       </div>
