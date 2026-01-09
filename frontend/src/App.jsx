@@ -71,8 +71,8 @@ function App() {
         <div countdisplay>
           <h1> {currentNum}</h1>
           <button onClick={()=>{setIsRunning(true)}}>Start</button>
-          <button>Pause</button>
-          <button>Reset</button>
+          <button onClick={()=>{setIsRunning(false)}}>Pause</button>
+          <button onClick={()=>{setIsRunning(false); setCurrentNum(Number(isPresetActive? presetCount: customInput))}}>Reset</button>
         </div>
       </div>
     </>
