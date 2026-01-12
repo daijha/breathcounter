@@ -12,23 +12,33 @@ function App() {
 
   //create a state that determines is the countdown is running or not
   const [isRunning, setIsRunning] = useState(false); // not running on render
+  const [isVisible, setIsVisible] = useState(false); // for word fading logic
+  const [cycle, setCycle] = useState(0);
 
   //first create state to add inputs to current num
   useEffect(() => {
-    isPresetActive ? setCurrentNum(Number(presetCount)) : setCurrentNum(Number(customInput));
+    isPresetActive
+      ? setCurrentNum(Number(presetCount))
+      : setCurrentNum(Number(customInput));
     console.log(`current num is ${currentNum}`);
-  },[isPresetActive, presetCount,customInput]);// these all effect how this effect runs
+  }, [isPresetActive, presetCount, customInput]); // these all effect how this effect runs
 
-
-  // then take current num and decrement it using set timeout
-
-    useEffect(()=>{
-      if(currentNum > 0 && isRunning){
-   const id = setTimeout(()=>{
-    setCurrentNum(currentNum -1)
-  }, 1000)
-      return ()=> clearTimeout(id)};
-     }, [isRunning, currentNum]);
+  // then take current num and decrement it using set timeout( relies on breathing toggle)
+   //toggle the visibility of the breathing instructions combined the 2 effects into 1 
+  useEffect(() => {
+    let id ; // gives the cleartimeout id access(scope)
+if (currentNum > 0 && isRunning ){
+   id = setTimeout(() => {
+      setIsVisible((prev) => !prev); // toggle 
+      setCycle(cycle + 1);// let the toggle run all the way through (1 cycle)
+      const newNum = cycle + 1 // update cycle count
+            if ( newNum % 2 === 0) {
+      setCurrentNum((prev) => prev - 1);//updates countdown after cycle completes 
+    }
+    }, 2000);
+}
+    return () => clearTimeout(id);
+  }, [isRunning, currentNum, cycle]);
 
   return (
     <>
@@ -52,7 +62,7 @@ function App() {
           </select>
         </div>
 
-        <div className="customcount">
+        <div className="customCount">
           <h3>Or set your own preference </h3>
           <input
             type="number"
@@ -67,12 +77,37 @@ function App() {
         </div>
       </div>
 
-      <div className="breathcounter">
-        <div countdisplay>
+      <div className="breathCounter">
+        <div className="countDisplay">
+          <h1 className={isVisible ? `fade visible` : `fade hidden`}>
+            Breathe In
+          </h1>
+          <h1 className={isVisible ? `fade hidden` : `fade visible`}>
+            Breathe Out
+          </h1>
           <h1> {currentNum}</h1>
-          <button onClick={()=>{setIsRunning(true)}}>Start</button>
-          <button onClick={()=>{setIsRunning(false)}}>Pause</button>
-          <button onClick={()=>{setIsRunning(false); setCurrentNum(Number(isPresetActive? presetCount: customInput))}}>Reset</button>
+          <button
+            onClick={() => {
+              setIsRunning(true);
+            }}
+          >
+            Start
+          </button>
+          <button
+            onClick={() => {
+              setIsRunning(false);
+            }}
+          >
+            Pause
+          </button>
+          <button
+            onClick={() => {
+              setIsRunning(false);
+              setCurrentNum(Number(isPresetActive ? presetCount : customInput));
+            }}
+          >
+            Reset
+          </button>
         </div>
       </div>
     </>
