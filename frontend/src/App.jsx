@@ -14,6 +14,15 @@ function App() {
   const [isRunning, setIsRunning] = useState(false); // not running on render
   const [isVisible, setIsVisible] = useState(false); // for word fading logic
   const [cycle, setCycle] = useState(0);
+  const messages = [
+    "Great Work!",
+    "Nice Job",
+    "Well Done",
+    "You did it!",
+    "Thank Yourself",
+    "Beautifully Done",
+  ];
+  const [doneMsg, setDoneMsg] = useState("")
 
   //first create state to add inputs to current num
   useEffect(() => {
@@ -24,24 +33,33 @@ function App() {
   }, [isPresetActive, presetCount, customInput]); // these all effect how this effect runs
 
   // then take current num and decrement it using set timeout( relies on breathing toggle)
-   //toggle the visibility of the breathing instructions combined the 2 effects into 1 
+  //toggle the visibility of the breathing instructions combined the 2 effects into 1
   useEffect(() => {
-    let id ; // gives the cleartimeout id access(scope)
-if (currentNum > 0 && isRunning ){
-   id = setTimeout(() => {
-      setIsVisible((prev) => !prev); // toggle 
-      setCycle(cycle + 1);// let the toggle run all the way through (1 cycle)
-      const newNum = cycle + 1 // update cycle count
-            if ( newNum % 2 === 0) {
-      setCurrentNum((prev) => prev - 1);//updates countdown after cycle completes 
+    let id; // gives the cleartimeout id access(scope)
+    if (currentNum > 0 && isRunning) {
+      id = setTimeout(() => {
+        setIsVisible((prev) => !prev); // toggle
+        setCycle(cycle + 1); // let the toggle run all the way through (1 cycle)
+        const newNum = cycle + 1; // update cycle count
+        if (newNum % 2 === 0) {
+          setCurrentNum((prev) => prev - 1); //updates countdown after cycle completes
+        }
+      }, 2000);
     }
-    }, 2000);
-}
     return () => clearTimeout(id);
   }, [isRunning, currentNum, cycle]);
 
+  useEffect(() => {
+    if (currentNum === 0 && isRunning) {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      const selected = messages[randomIndex];
+      setDoneMsg(selected);
+      setIsVisible(true);
+    }
+  }, [currentNum, doneMsg, isRunning]);
   return (
     <>
+      <h1>Breath Counter</h1>
       <div className="menu">
         <div className="precount">
           <h3> Use one of the preset counts </h3>
@@ -108,6 +126,9 @@ if (currentNum > 0 && isRunning ){
           >
             Reset
           </button>
+          <h2 className={isVisible ? `fade visible` : `fade hidden`}>
+            {doneMsg}
+          </h2>
         </div>
       </div>
     </>
