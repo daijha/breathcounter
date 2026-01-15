@@ -13,6 +13,8 @@ function App() {
   //create a state that determines is the countdown is running or not
   const [isRunning, setIsRunning] = useState(false); // not running on render
   const [isVisible, setIsVisible] = useState(false); // for word fading logic
+  const [isVisible1, setIsVisible1] = useState(false); // for word fading logic( completion)
+
   const [cycle, setCycle] = useState(0);
   const messages = [
     "Great Work!",
@@ -22,7 +24,7 @@ function App() {
     "Thank Yourself",
     "Beautifully Done",
   ];
-  const [doneMsg, setDoneMsg] = useState("")
+  const [doneMsg, setDoneMsg] = useState("");
 
   //first create state to add inputs to current num
   useEffect(() => {
@@ -54,9 +56,19 @@ function App() {
       const randomIndex = Math.floor(Math.random() * messages.length);
       const selected = messages[randomIndex];
       setDoneMsg(selected);
-      setIsVisible(true);
+      setIsVisible1(true);
     }
   }, [currentNum, doneMsg, isRunning]);
+
+  //ANOTHER EFFECT FOR THE FADE CONTROL ON THE COMPLETION MSG
+  useEffect(() => {
+    if (!isVisible1) {
+      let id1 = setTimeout(() => {
+        setDoneMsg(""); //resets the completion msg
+      }, 1000);
+      return () => clearTimeout(id1);
+    }
+  }, [isVisible1]);
   return (
     <>
       <h1>Breath Counter</h1>
@@ -107,6 +119,7 @@ function App() {
           <button
             onClick={() => {
               setIsRunning(true);
+              setIsVisible1(false); // hides the last message on start
             }}
           >
             Start
@@ -121,12 +134,14 @@ function App() {
           <button
             onClick={() => {
               setIsRunning(false);
+               setIsVisible1(false); // hides the last message on start
+
               setCurrentNum(Number(isPresetActive ? presetCount : customInput));
             }}
           >
             Reset
           </button>
-          <h2 className={isVisible ? `fade visible` : `fade hidden`}>
+          <h2 className={isVisible1 ? `fade visible` : `fade hidden`}>
             {doneMsg}
           </h2>
         </div>
