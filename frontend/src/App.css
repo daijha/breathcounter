@@ -1,25 +1,51 @@
-.menu{
-  border:4px solid orange;
-  display:flex;
-}
-.precount{
+:root html, body{
   border:1px solid blue ;
+   display: flex;
+  justify-content: center;
 }
-.customCount{
-  border:1px solid red;
+
+.menu {
+  border: 4px solid orange;
+  display: flex;
+  justify-content: center;
 }
-.breathCounter{
-  border:4px solid green;
+.precount {
+  border: 1px solid blue;
+  margin:5px;
+  padding:5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.countDisplay{
-  border:1px solid red;
+.customCount {
+  border: 1px solid red;
+    margin:5px;
+  padding:5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.fade{
+.breathCounter {
+  border: 4px solid green;
+  border-radius: 50%;
+}
+h2{
+  text-align: center;
+}
+.btnDisplay {
+  border: 1px solid red;
+   display: flex;
+  justify-content: center;
+}
+.fade {
   transition: opacity ease-in-out 1s;
 }
-.visible{
-  opacity:1;
+.visible {
+  opacity: 1;
 }
-.hidden{
-  opacity:0;
+.hidden {
+  opacity: 0;
+}
+h1 {
+  text-align: center;
 }

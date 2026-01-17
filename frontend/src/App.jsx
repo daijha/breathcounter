@@ -108,43 +108,43 @@ function App() {
       </div>
 
       <div className="breathCounter">
-        <div className="countDisplay">
-          <h1 className={isVisible ? `fade visible` : `fade hidden`}>
-            Breathe In
-          </h1>
-          <h1 className={isVisible ? `fade hidden` : `fade visible`}>
-            Breathe Out
-          </h1>
-          <h1> {currentNum}</h1>
-          <button
-            onClick={() => {
-              setIsRunning(true);
-              setIsVisible1(false); // hides the last message on start
-            }}
-          >
-            Start
-          </button>
-          <button
-            onClick={() => {
-              setIsRunning(false);
-            }}
-          >
-            Pause
-          </button>
-          <button
-            onClick={() => {
-              setIsRunning(false);
-               setIsVisible1(false); // hides the last message on start
+        <h1 className={isVisible ? `fade visible` : `fade hidden`}>
+          Breathe In
+        </h1>
+        <h1 className={isVisible ? `fade hidden` : `fade visible`}>
+          Breathe Out
+        </h1>
+        <h1> {currentNum}</h1>
+        <h2 className={isVisible1 ? `fade visible` : `fade hidden`}>
+          {doneMsg}
+        </h2>
+      </div>
+      <div className="btnDisplay">
+        <button
+          onClick={() => {
+            setIsRunning(true);
+            setIsVisible1(false); // hides the last message on start
+          }}
+        >
+          Start
+        </button>
+        <button
+          onClick={() => {
+            setIsRunning(false);
+          }}
+        >
+          Pause
+        </button>
+        <button
+          onClick={() => {
+            setIsRunning(false);
+            setIsVisible1(false); // hides the last message on start
 
-              setCurrentNum(Number(isPresetActive ? presetCount : customInput));
-            }}
-          >
-            Reset
-          </button>
-          <h2 className={isVisible1 ? `fade visible` : `fade hidden`}>
-            {doneMsg}
-          </h2>
-        </div>
+            setCurrentNum(Number(isPresetActive ? presetCount : customInput));
+          }}
+        >
+          Reset
+        </button>
       </div>
     </>
   );
