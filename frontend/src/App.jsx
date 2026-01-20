@@ -107,17 +107,23 @@ function App() {
         </div>
       </div>
 
-      <div className="breathCounter">
-        <h1 className={isVisible ? `fade visible` : `fade hidden`}>
+      <div className="counterBox">
+        <div className="breathCounter">
+        <div className="breathText">
+          <h1 className={isVisible ? `fade visible` : `fade hidden`}>
           Breathe In
         </h1>
         <h1 className={isVisible ? `fade hidden` : `fade visible`}>
           Breathe Out
         </h1>
+        </div>
         <h1> {currentNum}</h1>
-        <h2 className={isVisible1 ? `fade visible` : `fade hidden`}>
+       <div className="complete">
+         <h2 className={isVisible1 ? `fade visible` : `fade hidden`}>
           {doneMsg}
         </h2>
+       </div>
+      </div>
       </div>
       <div className="btnDisplay">
         <button
