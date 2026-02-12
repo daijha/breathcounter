@@ -110,7 +110,7 @@ function App() {
 
       <div className="counterBox">
         <div className={isRunning? "breathCounter active" : "breathCounter"}>
-        <div className="breathText">
+       <div className="breathText">
           <h1 className={isVisible ? `fade hidden` : `fade visible`}>
           Breathe In
         </h1>
