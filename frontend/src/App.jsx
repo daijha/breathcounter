@@ -57,6 +57,7 @@ function App() {
       const selected = messages[randomIndex];
       setDoneMsg(selected);
       setIsVisible1(true);
+      setIsRunning(false);
     }
   }, [currentNum, doneMsg, isRunning]);
 
@@ -108,7 +109,7 @@ function App() {
       </div>
 
       <div className="counterBox">
-        <div className="breathCounter">
+        <div className={isRunning? "breathCounter active" : "breathCounter"}>
         <div className="breathText">
           <h1 className={isVisible ? `fade visible` : `fade hidden`}>
           Breathe In
@@ -130,6 +131,7 @@ function App() {
           onClick={() => {
             setIsRunning(true);
             setIsVisible1(false); // hides the last message on start
+
           }}
         >
           Start
