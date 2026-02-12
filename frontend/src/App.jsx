@@ -46,7 +46,7 @@ function App() {
         if (newNum % 2 === 0) {
           setCurrentNum((prev) => prev - 1); //updates countdown after cycle completes
         }
-      }, 2000);
+      }, 4000);
     }
     return () => clearTimeout(id);
   }, [isRunning, currentNum, cycle]);
@@ -111,10 +111,10 @@ function App() {
       <div className="counterBox">
         <div className={isRunning? "breathCounter active" : "breathCounter"}>
         <div className="breathText">
-          <h1 className={isVisible ? `fade visible` : `fade hidden`}>
+          <h1 className={isVisible ? `fade hidden` : `fade visible`}>
           Breathe In
         </h1>
-        <h1 className={isVisible ? `fade hidden` : `fade visible`}>
+        <h1 className={isVisible ? `fade visible` : `fade hidden`}>
           Breathe Out
         </h1>
         </div>

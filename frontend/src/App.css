@@ -44,7 +44,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation:breathing 1s ease-in-out infinite;
+  animation:breathing 8s ease-in-out infinite;
   animation-play-state: paused; /*have to include controls for start and stop*/
 }
 .breathCounter.active{
