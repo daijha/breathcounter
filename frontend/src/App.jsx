@@ -14,6 +14,7 @@ function App() {
   const [isRunning, setIsRunning] = useState(false); // not running on render
   const [isVisible, setIsVisible] = useState(false); // for word fading logic
   const [isVisible1, setIsVisible1] = useState(false); // for word fading logic( completion)
+  const [resetKey, setResetKey] = useState(0)// resetting the breathing circle 
 
   const [cycle, setCycle] = useState(0);
   const messages = [
@@ -109,8 +110,10 @@ function App() {
       </div>
 
       <div className="counterBox">
-        <div className={isRunning? "breathCounter active" : "breathCounter"}>
-       <div className="breathText">
+        <div
+        key= {resetKey}
+         className={isRunning? "breathCounter active" : "breathCounter"}>
+       <div className= {`breathText ${!isRunning ? "hiddenBeforeStart" : ""}`}>
           <h1 className={isVisible ? `fade hidden` : `fade visible`}>
           Breathe In
         </h1>
@@ -118,7 +121,7 @@ function App() {
           Breathe Out
         </h1>
         </div>
-        <h1> {currentNum}</h1>
+        <h1 /*className={`${!isRunning ? "hiddenBeforeStart" : ""}`}*/> {currentNum}</h1>
        <div className="complete">
          <h2 className={isVisible1 ? `fade visible` : `fade hidden`}>
           {doneMsg}
@@ -147,7 +150,7 @@ function App() {
           onClick={() => {
             setIsRunning(false);
             setIsVisible1(false); // hides the last message on start
-
+            setResetKey(prev => prev + 1) // gives a new unique id on reset each time (resets the circle as well)
             setCurrentNum(Number(isPresetActive ? presetCount : customInput));
           }}
         >

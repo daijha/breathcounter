@@ -81,6 +81,10 @@ body {
   top: 50%;
   left: 20%;
 }
+.hiddenBeforeStart{
+opacity:0;
+
+}
 .complete {
   border: 1px solid black;
   display: flex;
