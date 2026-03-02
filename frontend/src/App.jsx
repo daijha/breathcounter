@@ -15,6 +15,7 @@ function App() {
   const [isVisible, setIsVisible] = useState(false); // for word fading logic
   const [isVisible1, setIsVisible1] = useState(false); // for word fading logic( completion)
   const [resetKey, setResetKey] = useState(0)// resetting the breathing circle 
+  const [canReset, setCanReset] = useState(true)
 
   const [cycle, setCycle] = useState(0);
   const messages = [
@@ -37,12 +38,12 @@ function App() {
 
   // then take current num and decrement it using set timeout( relies on breathing toggle)
   //toggle the visibility of the breathing instructions combined the 2 effects into 1
-  useEffect(() => {
+ useEffect(() => {
     let id; // gives the cleartimeout id access(scope)
     if (currentNum > 0 && isRunning) {
       id = setTimeout(() => {
         setIsVisible((prev) => !prev); // toggle
-        setCycle(cycle + 1); // let the toggle run all the way through (1 cycle)
+        setCycle(prev=> prev + 1); // let the toggle run all the way through (1 cycle)
         const newNum = cycle + 1; // update cycle count
         if (newNum % 2 === 0) {
           setCurrentNum((prev) => prev - 1); //updates countdown after cycle completes
@@ -52,6 +53,7 @@ function App() {
     return () => clearTimeout(id);
   }, [isRunning, currentNum, cycle]);
 
+
   useEffect(() => {
     if (currentNum === 0 && isRunning) {
       const randomIndex = Math.floor(Math.random() * messages.length);
@@ -59,6 +61,7 @@ function App() {
       setDoneMsg(selected);
       setIsVisible1(true);
       setIsRunning(false);
+      setCanReset(true)
     }
   }, [currentNum, doneMsg, isRunning]);
 
@@ -134,22 +137,25 @@ function App() {
           onClick={() => {
             setIsRunning(true);
             setIsVisible1(false); // hides the last message on start
-
+            setCanReset(false);
+ 
           }}
         >
           Start
         </button>
-        <button
+        {/* <button
           onClick={() => {
             setIsRunning(false);
           }}
         >
           Pause
-        </button>
+        </button> */}
         <button
+        disabled = {!canReset}
           onClick={() => {
             setIsRunning(false);
             setIsVisible1(false); // hides the last message on start
+            setCycle(0)//
             setResetKey(prev => prev + 1) // gives a new unique id on reset each time (resets the circle as well)
             setCurrentNum(Number(isPresetActive ? presetCount : customInput));
           }}

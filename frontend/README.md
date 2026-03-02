@@ -1,16 +1,23 @@
-# React + Vite
+# Breath Counter 
+A minimal breathing counter built with React. Users can choose a preset number of breaths or enter a custom amount, then follow a timed inhale/exhale rhythm. Each full breath (inhale + exhale) reduces the counter by one until the session completes.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- Preset breathing counts
+- Custom breathing count input
+- Alternating inhale/exhale text synced to a 4‑second cycle
+- Countdown that decreases after each full breath
+- Random completion message
+- Reset button to restart the session
 
-Currently, two official plugins are available:
+## How It Works
+The breathing rhythm is controlled by a repeating 4‑second timeout. Each cycle toggles the inhale/exhale text and updates an internal counter. Every two cycles (one full breath), the main countdown decreases by one. When the count reaches zero, the loop stops and a completion message appears.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Notes 
+- A Pause button was originally added but removed because pausing mid‑cycle caused timing drift and leftover timeouts. The app is more stable without mid‑breath interruption right now.
+- Reset is intended for use between sessions, not during an active breath cycle for the same timing loop reasons.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack 
+- React (hooks)
+- CSS animations
+- JavaScript timing (setTimeout)

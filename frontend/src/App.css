@@ -1,46 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-:root, html,
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+:root,
+html,
 body {
-  height: 98vh;
-  width:98vw;
-  border: 1px solid blue;
+  height: 99vh;
+  width: 100vw;
+  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
   font-family: nunito;
-  color:navy;
-  background-image: url("./assets/skybg.jpg");
-  background-size:cover;
+  color: #282f35;
+  background-image: linear-gradient(#7bbcf8, #f7fbff);
+  background-size: cover;
 }
 
 .menu {
-  border: 4px solid orange;
-  background-image: url("./assets/singleCloud.png");
-  background-size: cover;
-  padding:5%;
-  margin:0 auto;
+  /* border: 4px solid orange; */
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgb(89, 151, 189);
+  background-color: rgba(192, 221, 247, 0.483);
+  margin: 0 auto;
   display: flex;
-  justify-content:space-between ;
+  justify-content: space-between;
 }
-.precount, .customCount {
-  border: 1px solid blue;
+.precount,
+.customCount {
+  /* border: 1px solid blue; */
   border-radius: 20px;
   margin: 5px;
-  padding: 5%;
+  padding: 1%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
-  background-color: rgba(240, 248, 255, 0.483);
 }
 
-select, input, button{ /*, allows me to add 2 classes*/
-  border:4px solid navy;
-  padding:8px;
+select,
+input,
+button {
+  /*, allows me to add 2 classes*/
+  border: 4px solid navy;
+  padding: 8px;
   border-radius: 12px;
   text-align: center;
 }
-button{
-  height:20%;
-  width:20%;
+button {
+  height: 20%;
+  width: 20%;
 }
 .counterBox {
   /* border:1px solid blue; */
@@ -52,7 +57,7 @@ button{
 .breathCounter {
   height: 30vh;
   width: 17vw;
-  margin: 10px;
+  margin: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +68,8 @@ button{
   /* :: before is a pseudo element that creates a new layer within a container. this was used to stop the text from scaling in animation*/
   content: "";
   border-radius: 50%;
-  border: 4px solid blue;
+  border: none;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
   background-color: rgba(240, 248, 255, 0.387);
   position: absolute; /*allows the before circle element to fill the parent container*/
   inset: 0; /*shorthand for the distance from the ::before element's edges of the positioned parent*/
@@ -86,7 +92,7 @@ button{
 }
 
 .breathText {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   position: relative; /*keeps text relative to the div it lives in*/
   width: 100%;
   height: 30%;
@@ -96,21 +102,25 @@ button{
   top: 50%;
   left: 20%;
 }
-.hiddenBeforeStart{
-opacity:0;
-
+.hiddenBeforeStart {
+  opacity: 0;
 }
 .complete {
   /* border: 1px solid black; */
   display: flex;
   justify-content: center;
   height: 30%;
+  z-index: 0;
+
+
 }
 h2 {
   text-align: center;
 }
 .btnDisplay {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  box-shadow: 0 0 12px rgb(89, 151, 189);
+  border-radius: 12px;
   margin: 20px;
   padding: 30px;
   display: flex;
@@ -128,6 +138,6 @@ h2 {
 h1 {
   text-align: center;
   z-index: 0;
-  margin-top:5%;
-  margin-bottom: 10%;
+  margin-top: 5%;
+  
 }
